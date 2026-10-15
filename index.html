@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhiwei Lan | Portfolio PCTO</title>
+
+    <!-- Font e Librerie Esterne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fogli di Stile Personalizzati -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="loading">
+
+<!-- Preloader -->
+<div id="loader" role="status" aria-live="polite">
+    <div class="ld-name">ZHIWEI LAN</div>
+    <div class="ld-num"><span id="ldn">0</span>%</div>
+</div>
+
+<!-- Cursor Custom Cyberpunk HUD Reticle -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring">
+    <div class="cursor-crosshair ch-tl"></div>
+    <div class="cursor-crosshair ch-tr"></div>
+    <div class="cursor-crosshair ch-bl"></div>
+    <div class="cursor-crosshair ch-br"></div>
+    <span></span>
+</div>
+
+<!-- Canvas WebGL e Overlays -->
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- Navigazione fissa -->
+<header class="at-ui">
+    <a class="at-logo interactive-el" href="#home" aria-label="Torna all'inizio">ZHIWEI LAN</a>
+    <div class="d-flex align-items-center gap-2">
+        <button id="langToggle" class="at-menu" type="button" aria-label="Cambia Lingua / Switch Language">LANG [IT]</button>
+        <button id="soundToggle" class="at-menu" type="button" aria-label="Attiva/Disattiva Audio SFX">AUDIO [OFF]</button>
+        <button class="at-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Apri menu di navigazione">MENU</button>
+    </div>
+</header>
+
+<div class="at-count" aria-live="polite">
+    <b id="cn">01</b><span> / 06</span>
+    <div id="cl">INIZIO</div>
+</div>
+<div class="at-hint" id="hint" aria-hidden="true">SCORRI</div>
+<div class="at-line" aria-hidden="true"><i id="pf"></i></div>
+
+<!-- Menu Offcanvas -->
+<div class="offcanvas offcanvas-top h-100" tabindex="-1" id="menu" data-bs-theme="dark" aria-label="Menu di navigazione principale">
+    <div class="offcanvas-header px-4 pt-4">
+        <span class="at-logo">ZHIWEI LAN</span>
+        <button type="button" class="at-menu" data-bs-dismiss="offcanvas" aria-label="Chiudi menu">CHIUDI</button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-center px-4 px-md-5" id="menuList" role="navigation"></div>
+</div>
+
+<!-- Contenuto principale -->
+<main>
+    <!-- Sezione 00: Hero / Home -->
+    <section id="home" class="sec hero" data-name="Inizio" data-shape="0" data-ca="#00ffaa" data-cb="#9d00ff" data-x="0">
+        <div class="container-fluid px-4 px-md-5">
+            <div class="status-pill" data-i18n="status"><span class="status-dot"></span>STATUS: PCTO COMPLETED 2026 // SYSTEM ONLINE</div>
+            <div class="eyebrow scr" data-i18n="eyebrow_home">PCTO 2025/2026 // ITT ALLIEVI-SANGALLO, TERNI</div>
+            <h1 class="giant" aria-label="Zhiwei Lan">
+                <span class="line"><span class="w">ZHIWEI</span></span>
+                <span class="line alt"><span class="w">LAN</span></span>
+            </h1>
+            <p class="hero-sub" data-i18n="hero_sub">Web &amp; Mobile Developer. Tre stage nel 2026: un sito web in Spagna e due app a Terni.</p>
+        </div>
+    </section>
+
+    <!-- Sezione 01: Chi sono -->
+    <section id="about" class="sec" data-name="Chi sono" data-shape="1" data-ca="#00d4ff" data-cb="#00ffaa" data-x="4">
+        <div class="container-fluid px-4 px-md-5">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="eyebrow scr" data-i18n="eyebrow_about">01 // CHI SONO</div>
+                    <p class="statement" data-i18n="statement">Studente di Informatica. In tre stage ho imparato strumenti nuovi in pochi giorni e li ho messi subito in un progetto vero.</p>
+                    <p class="lead-p rv" data-i18n="lead_about">Frequento l'ITT Allievi-Sangallo di Terni. Prima SCSS e Hugo in Spagna, poi Flutter, BLoC e Supabase in Italia.</p>
+                    <div class="rv mb-4">
+                        <span class="badge badge-n" data-i18n="lang_it">Italiano</span>
+                        <span class="badge badge-n" data-i18n="lang_zh">Cinese</span>
+                        <span class="badge badge-n" data-i18n="lang_en">Inglese</span>
+                        <span class="badge badge-n" data-i18n="lang_es">Spagnolo (base)</span>
+                    </div>
+                    <div class="rv">
+                        <div class="tlr interactive-el" role="button" tabindex="0" onclick="openModal('modal-3')" onkeydown="kd(event,'modal-3')" aria-label="Apri dettagli Code Monsters">
+                            <span>8 gen - 6 feb 2026</span><b>Code Monsters</b><i>A Coruña</i>
+                        </div>
+                        <div class="tlr interactive-el" role="button" tabindex="0" onclick="openModal('modal-2')" onkeydown="kd(event,'modal-2')" aria-label="Apri dettagli Freeday15">
+                            <span>3 - 20 giu 2026</span><b>Freeday15</b><i>Terni</i>
+                        </div>
+                        <div class="tlr interactive-el" role="button" tabindex="0" onclick="openModal('modal-1')" onkeydown="kd(event,'modal-1')" aria-label="Apri dettagli Authentica">
+                            <span>14 - 25 set 2026</span><b>Authentica</b><i>Terni</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione 02: I miei Stage -->
+    <section id="work" class="sec" data-name="Stage" data-shape="7" data-ca="#00ffaa" data-cb="#9d00ff" data-x="4">
+        <div class="container-fluid px-4 px-md-5">
+            <div class="eyebrow scr" data-i18n="eyebrow_work">02 // I MIEI STAGE</div>
+            <h2 class="sec-big" data-i18n="title_work">Tre stage,<br>tre progetti</h2>
+            <p class="lead-p mb-5" data-i18n="sub_work">Passa il mouse su uno stage e guarda cosa succede alle particelle. Clicca per aprire la scheda.</p>
+            <div class="wk-list">
+                <div class="wk interactive-el" data-shape="2" data-ca="#00ffaa" data-cb="#ffffff" role="button" tabindex="0" onclick="openModal('modal-3')" onkeydown="kd(event,'modal-3')" aria-label="Dettagli stage Code Monsters">
+                    <div class="row align-items-center g-3">
+                        <div class="col-md-1 wk-n">01</div>
+                        <div class="col-md-7">
+                            <div class="wk-t">Code Monsters</div>
+                            <div class="wk-d" data-i18n="stage1_desc">Refactoring del sito di un'accademia di coding: da Bootstrap a SCSS.</div>
+                        </div>
+                        <div class="col-md-4 wk-m">
+                            <div class="grp" data-i18n="stage1_grp">SITO WEB ALL'ESTERO</div><span data-i18n="stage1_loc">A Coruña, Spagna</span><br>8 gen - 6 feb 2026
+                            <div class="mt-2">
+                                <span class="badge badge-n">SCSS</span>
+                                <span class="badge badge-n">Hugo</span>
+                                <span class="badge badge-n">GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wk interactive-el" data-shape="3" data-ca="#ff3df0" data-cb="#9d00ff" role="button" tabindex="0" onclick="openModal('modal-2')" onkeydown="kd(event,'modal-2')" aria-label="Dettagli stage List-Up!">
+                    <div class="row align-items-center g-3">
+                        <div class="col-md-1 wk-n">02</div>
+                        <div class="col-md-7">
+                            <div class="wk-t">List-Up!</div>
+                            <div class="wk-d" data-i18n="stage2_desc">App per liste e checklist, con architettura BLoC e temi personalizzabili.</div>
+                        </div>
+                        <div class="col-md-4 wk-m">
+                            <div class="grp" data-i18n="stage2_grp">APP MOBILE E FRONTEND</div><span data-i18n="stage2_loc">Freeday15 SRL, Terni</span><br>3 - 20 giu 2026
+                            <div class="mt-2">
+                                <span class="badge badge-n">Flutter</span>
+                                <span class="badge badge-n">BLoC</span>
+                                <span class="badge badge-n">Material 3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wk interactive-el" data-shape="4" data-ca="#ffd23f" data-cb="#00ffaa" role="button" tabindex="0" onclick="openModal('modal-1')" onkeydown="kd(event,'modal-1')" aria-label="Dettagli stage QuizShare">
+                    <div class="row align-items-center g-3">
+                        <div class="col-md-1 wk-n">03</div>
+                        <div class="col-md-7">
+                            <div class="wk-t">QuizShare</div>
+                            <div class="wk-d" data-i18n="stage3_desc">App di quiz in tempo reale, da soli o in sfida. Ho costruito tutto il backend.</div>
+                        </div>
+                        <div class="col-md-4 wk-m">
+                            <div class="grp" data-i18n="stage3_grp">APP MULTIPLAYER E BACKEND</div><span data-i18n="stage3_loc">Authentica S.p.A., Terni</span><br>14 - 25 set 2026
+                            <div class="mt-2">
+                                <span class="badge badge-n">Flutter</span>
+                                <span class="badge badge-n">Supabase</span>
+                                <span class="badge badge-n">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione 03: Competenze -->
+    <section id="skills" class="sec" data-name="Competenze" data-shape="5" data-ca="#9d00ff" data-cb="#00d4ff" data-x="0">
+        <div class="container-fluid px-4 px-md-5">
+            <div class="eyebrow scr" data-i18n="eyebrow_skills">03 // COMPETENZE</div>
+            <div class="mq mq-a">
+                <div class="mq-in" data-dir="-1">FLUTTER <span class="mq-tag">[ 01 ]</span> DART <span class="mq-tag">[ 02 ]</span> SUPABASE <span class="mq-tag">[ 03 ]</span> POSTGRESQL <span class="mq-tag">[ 04 ]</span> BLOC <span class="mq-tag">[ 05 ]</span> </div>
+            </div>
+            <div class="mq mq-b">
+                <div class="mq-in" data-dir="1">SCSS <span class="mq-tag">// SYS</span> HUGO <span class="mq-tag">// WEB</span> BOOTSTRAP <span class="mq-tag">// CSS</span> GITHUB <span class="mq-tag">// GIT</span> MARP <span class="mq-tag">// DECK</span> </div>
+            </div>
+            <p class="lead-p mt-3 mb-4" data-i18n="sub_skills">Clicca su una tecnologia per evidenziare dove è stata utilizzata nei tre progetti.</p>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 rv"><div class="glass"><div class="grp" data-i18n="cat_mobile">Mobile</div><span class="badge badge-n">Flutter</span><span class="badge badge-n">Dart</span><span class="badge badge-n">Material 3</span></div></div>
+                <div class="col-md-6 col-lg-4 rv"><div class="glass"><div class="grp" data-i18n="cat_arch">Architettura</div><span class="badge badge-n">Clean Architecture</span><span class="badge badge-n">BLoC</span><span class="badge badge-n">Repository</span></div></div>
+                <div class="col-md-6 col-lg-4 rv"><div class="glass"><div class="grp" data-i18n="cat_backend">Backend</div><span class="badge badge-n">Supabase</span><span class="badge badge-n">PostgreSQL</span><span class="badge badge-n">RLS</span><span class="badge badge-n">RPC</span><span class="badge badge-n">Realtime</span></div></div>
+                <div class="col-md-6 col-lg-4 rv"><div class="glass"><div class="grp" data-i18n="cat_web">Web</div><span class="badge badge-n">HTML5</span><span class="badge badge-n">CSS3</span><span class="badge badge-n">SCSS</span><span class="badge badge-n">Hugo</span><span class="badge badge-n">Bootstrap 5</span></div></div>
+                <div class="col-md-6 col-lg-4 rv"><div class="glass"><div class="grp" data-i18n="cat_tools">Strumenti</div><span class="badge badge-n">Git</span><span class="badge badge-n">GitHub</span><span class="badge badge-n">GitHub Pages</span><span class="badge badge-n">Marp</span><span class="badge badge-n">VS Code</span></div></div>
+                <div class="col-md-6 col-lg-4 rv"><div class="glass"><div class="grp" data-i18n="cat_languages">Lingue</div><span class="badge badge-n" data-i18n="lang_it">Italiano</span><span class="badge badge-n" data-i18n="lang_zh">Cinese</span><span class="badge badge-n" data-i18n="lang_en">Inglese</span><span class="badge badge-n" data-i18n="lang_es">Spagnolo (base)</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione 04: Cosa ho imparato -->
+    <section id="learn" class="sec" data-name="Cosa ho imparato" data-shape="6" data-ca="#00ffaa" data-cb="#ffd23f" data-x="4">
+        <div class="container-fluid px-4 px-md-5">
+            <div class="eyebrow scr" data-i18n="eyebrow_learn">04 // COSA HO IMPARATO</div>
+            <h2 class="sec-big" data-i18n="title_learn">Dai tre<br>stage</h2>
+            <div class="row ln rv"><div class="col-2 col-md-1 mono">01</div><div class="col-10 col-md-6"><h3 data-i18n="learn1_t">Il codice va scritto per chi lo leggerà</h3></div><div class="col-md-5 mt-3 mt-md-0"><p data-i18n="learn1_d">A Code Monsters ho visto quanto un HTML pulito renda facili le modifiche future.</p></div></div>
+            <div class="row ln rv"><div class="col-2 col-md-1 mono">02</div><div class="col-10 col-md-6"><h3 data-i18n="learn2_t">Una buona struttura fa risparmiare tempo</h3></div><div class="col-md-5 mt-3 mt-md-0"><p data-i18n="learn2_d">Con BLoC e Repository, in List-Up! ogni parte dell'app ha un compito preciso.</p></div></div>
+            <div class="row ln rv"><div class="col-2 col-md-1 mono">03</div><div class="col-10 col-md-6"><h3 data-i18n="learn3_t">Il client non è affidabile</h3></div><div class="col-md-5 mt-3 mt-md-0"><p data-i18n="learn3_d">In QuizShare i punteggi si calcolano nel database, così nessuno può barare.</p></div></div>
+            <div class="row ln rv"><div class="col-2 col-md-1 mono">04</div><div class="col-10 col-md-6"><h3 data-i18n="learn4_t">Si impara facendo, in squadra</h3></div><div class="col-md-5 mt-3 mt-md-0"><p data-i18n="learn4_d">Branch, pull request e due lingue di lavoro mi hanno reso più autonomo.</p></div></div>
+        </div>
+    </section>
+
+    <!-- Sezione 05: Domande / Contatti -->
+    <section id="end" class="sec d-flex align-items-center" data-name="Domande" data-shape="0" data-ca="#00ffaa" data-cb="#9d00ff" data-x="0">
+        <div class="container-fluid px-4 px-md-5">
+            <div class="eyebrow scr" data-i18n="eyebrow_end">05 // DOMANDE</div>
+            <h2 class="giant" style="font-size:clamp(3rem,12vw,12rem)" data-i18n="title_end">Domande?</h2>
+            <p class="lead-p mb-4" data-i18n="sub_end">Posso spiegare più nel dettaglio uno stage, per esempio come sincronizzo il timer di QuizShare o perché ho tolto Bootstrap dall'HTML.</p>
+            <a class="btn btn-neon btn-lg magnet interactive-el" href="https://github.com/ExeroHG" target="_blank" rel="noopener" style="background:var(--neon-green);color:#001a12;font-weight:700;border:0" aria-label="Profilo GitHub di Zhiwei Lan">github.com/ExeroHG</a>
+        </div>
+    </section>
+</main>
+
+<footer class="ft">ZHIWEI LAN - ITT "ALLIEVI-SANGALLO", TERNI - PCTO 2025/2026</footer>
+
+<!-- MODALI SCHEDA AZIENDA -->
+
+<!-- Modale 1: QuizShare -->
+<div class="modal-overlay" id="modal-1" role="dialog" aria-modal="true" aria-labelledby="m1-title">
+    <div class="hud-modal">
+        <div class="hud-modal-header">
+            <div>
+                <h2 id="m1-title" class="glitch-text">QuizShare</h2>
+                <span class="role" data-i18n="m1_role">Full-stack e mobile | Authentica S.p.A., Terni | 14-25 settembre 2026</span>
+            </div>
+            <button class="close-btn" type="button" onclick="closeModal('modal-1')" aria-label="Chiudi finestra modale" data-i18n="close_btn">CHIUDI [X]</button>
+        </div>
+
+        <p data-i18n="m1_desc">QuizShare è un'app di quiz multiplayer in tempo reale che si gioca da smartphone o browser. Ho curato l'interfaccia Flutter e ingegnerizzato l'intero backend serverless su Supabase e PostgreSQL.</p>
+
+        <h3 class="hud-sec" data-i18n="m1_key_t">Punti Chiave dello Sviluppo</h3>
+        <ul class="feature-list">
+            <li data-i18n="m1_k1"><strong>Backend Serverless &amp; RLS:</strong> Disegno dello schema database PostgreSQL con regole di sicurezza Row Level Security per la protezione dati.</li>
+            <li data-i18n="m1_k2"><strong>Sincronizzazione Realtime (WebSocket):</strong> Compensazione dinamica del clock drift tra server e client per assicurare un timer di countdown perfettamente identico per tutti i giocatori.</li>
+            <li data-i18n="m1_k3"><strong>Calcolo Punteggio via RPC:</strong> Risposte e classifiche elaborate atomicamente nel database tramite Stored Procedures (RPC) per prevenire manomissioni lato client.</li>
+            <li data-i18n="m1_k4"><strong>Autenticazione Flessibile &amp; RBAC:</strong> Login come ospite (UUID locale) o utente registrato con codice OTP via e-mail e gestione ruoli moderatore.</li>
+        </ul>
+
+        <h3 class="hud-sec" data-i18n="m1_arch_t">Flusso Architetturale</h3>
+        <div class="arch">
+            <div>App Flutter<br>Mobile &amp; Web</div><i>&rarr;</i>
+            <div>WebSocket<br>Realtime</div><i>&rarr;</i>
+            <div>Supabase</div><i>&rarr;</i>
+            <div>PostgreSQL<br>RLS + RPC</div>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-4"><div class="stat"><b data-val="6">6</b><span data-i18n="m1_stat1">Cifre PIN stanza</span></div></div>
+            <div class="col-4"><div class="stat"><b data-val="30">30 s</b><span data-i18n="m1_stat2">Timer risposta</span></div></div>
+            <div class="col-4"><div class="stat"><b data-val="10">10</b><span data-i18n="m1_stat3">Categorie Quiz</span></div></div>
+        </div>
+
+        <div class="tech-tags">
+            <div class="tech-tag">Flutter / Dart</div>
+            <div class="tech-tag">Supabase</div>
+            <div class="tech-tag">PostgreSQL</div>
+            <div class="tech-tag">RLS</div>
+            <div class="tech-tag">RPC</div>
+            <div class="tech-tag">WebSocket</div>
+            <div class="tech-tag">GitHub Pages</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modale 2: List-Up! -->
+<div class="modal-overlay" id="modal-2" role="dialog" aria-modal="true" aria-labelledby="m2-title">
+    <div class="hud-modal">
+        <div class="hud-modal-header">
+            <div>
+                <h2 id="m2-title" class="glitch-text">List-Up!</h2>
+                <span class="role" data-i18n="m2_role">Front-end mobile | Freeday15 SRL (Authentica Group), Terni | 3-20 giugno 2026</span>
+            </div>
+            <button class="close-btn" type="button" onclick="closeModal('modal-2')" aria-label="Chiudi finestra modale" data-i18n="close_btn">CHIUDI [X]</button>
+        </div>
+
+        <p data-i18n="m2_desc">List-Up! è un'applicazione mobile e web per la gestione avanzata di liste e checklist. Ho sviluppato l'architettura client-side in coppia con un collega backendista.</p>
+
+        <h3 class="hud-sec" data-i18n="m1_key_t">Punti Chiave dello Sviluppo</h3>
+        <ul class="feature-list">
+            <li data-i18n="m2_k1"><strong>BLoC &amp; Clean Architecture:</strong> Separazione netta tra interfaccia, logica dello stato ed erogazione dati per un codice reattivo e modulare.</li>
+            <li data-i18n="m2_k2"><strong>Repository Pattern &amp; Modalità Mock:</strong> Livello dati astratto con supporto a sorgente mock per testare l'intera app offline senza server.</li>
+            <li data-i18n="m2_k3"><strong>Dynamic Theme Engine (Material 3):</strong> Gestione personalizzata del tema che inietta palette di colori, font Google e Dark Mode in tempo reale.</li>
+            <li data-i18n="m2_k4"><strong>Stato Preservato (IndexedStack):</strong> Navigazione tra schermate senza re-rendering dell'interfaccia.</li>
+        </ul>
+
+        <div class="row g-3 mb-3">
+            <div class="col-4"><div class="stat"><b data-val="7">7</b><span data-i18n="m2_stat1">BLoC integrati</span></div></div>
+            <div class="col-4"><div class="stat"><b data-val="4">4</b><span data-i18n="m2_stat2">Repository Pattern</span></div></div>
+            <div class="col-4"><div class="stat"><b data-val="2">2</b><span data-i18n="m2_stat3">Sorgenti dati (Mock/DB)</span></div></div>
+        </div>
+
+        <div class="tech-tags">
+            <div class="tech-tag">Flutter / Dart</div>
+            <div class="tech-tag">BLoC</div>
+            <div class="tech-tag">Repository Pattern</div>
+            <div class="tech-tag">Supabase</div>
+            <div class="tech-tag">Material 3</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modale 3: Code Monsters -->
+<div class="modal-overlay" id="modal-3" role="dialog" aria-modal="true" aria-labelledby="m3-title">
+    <div class="hud-modal">
+        <div class="hud-modal-header">
+            <div>
+                <h2 id="m3-title" class="glitch-text">Code Monsters</h2>
+                <span class="role" data-i18n="m3_role">Front-end web | A Coruña, Spagna | 8 gennaio - 6 febbraio 2026</span>
+            </div>
+            <button class="close-btn" type="button" onclick="closeModal('modal-3')" aria-label="Chiudi finestra modale" data-i18n="close_btn">CHIUDI [X]</button>
+        </div>
+
+        <p data-i18n="m3_desc">Code Monsters è un'accademia di programmazione e competenze digitali in Spagna. Nel mio primo stage PCTO all'estero, ho eseguito il refactoring completo del loro sito in Hugo e Bootstrap 5.</p>
+
+        <h3 class="hud-sec" data-i18n="m1_key_t">Punti Chiave dello Sviluppo</h3>
+        <ul class="feature-list">
+            <li data-i18n="m3_k1"><strong>Refactoring SCSS Modulare (BEM):</strong> Eliminazione delle classi utility Bootstrap dall'HTML sostituendole con classi personalizzate (<code>cm-*</code>).</li>
+            <li data-i18n="m3_k2"><strong>Separazione Struttura e Stile:</strong> Organizzazione degli stili in partials (<code>_variables</code>, <code>_buttons</code>, <code>_grid</code>) compilati da Hugo Pipes.</li>
+            <li data-i18n="m3_k3"><strong>Workflow Git &amp; Pull Request:</strong> Lavoro in team bilingue (inglese/spagnolo) su branch separati con risoluzione dei merge conflicts.</li>
+        </ul>
+
+        <div class="codebox">// prima (classi utility inline)
+&lt;button class="btn btn-primary"&gt;Click&lt;/button&gt;
+
+// dopo (BEM / SCSS modulare)
+&lt;button class="cm-btn cm-btn--primary"&gt;Click&lt;/button&gt;</div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-4"><div class="stat"><b data-val="0">0</b><span data-i18n="m3_stat1">Classi utility nell'HTML</span></div></div>
+            <div class="col-4"><div class="stat"><b data-val="1.5">1.5</b><span data-i18n="m3_stat2">Settimane refactoring</span></div></div>
+            <div class="col-4"><div class="stat"><b data-val="2">2</b><span data-i18n="m3_stat3">Lingue di lavoro</span></div></div>
+        </div>
+
+        <div class="tech-tags">
+            <div class="tech-tag">SCSS / Sass</div>
+            <div class="tech-tag">Hugo</div>
+            <div class="tech-tag">Bootstrap 5</div>
+            <div class="tech-tag">Marp</div>
+            <div class="tech-tag">Git / GitHub</div>
+        </div>
+    </div>
+</div>
+
+<!-- Script Esterni CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script Personalizzati -->
+<script src="js/lang.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
